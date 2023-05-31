@@ -212,7 +212,7 @@ export class Quote extends BaseCommand {
       simulationStatus,
     } = swapRoutes;
 
-    this.logSwapResults(
+    this.outputSwapResults(
       routeAmounts,
       quote,
       quoteGasAdjusted,
