@@ -339,6 +339,7 @@ export abstract class BaseCommand extends Command {
 
   outputSwapResults(
     routeAmounts: RouteWithValidQuote[],
+    input: CurrencyAmount<Currency>,
     quote: CurrencyAmount<Currency>,
     _quoteGasAdjusted: CurrencyAmount<Currency>,
     _estimatedGasUsedQuoteToken: CurrencyAmount<Currency>,
