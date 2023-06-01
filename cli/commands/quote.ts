@@ -5,8 +5,8 @@ import { Currency, Percent, TradeType } from '@uniswap/sdk-core';
 import dotenv from 'dotenv';
 import _ from 'lodash';
 
-import { ID_TO_CHAIN_ID, MapWithLowerCaseKey, nativeOnChain, parseAmount, SwapRoute, SwapType, } from '../../src';
-import { NATIVE_NAMES_BY_ID, TO_PROTOCOL } from '../../src/util';
+import { ID_TO_CHAIN_ID, MapWithLowerCaseKey, nativeOnChain, SwapRoute, SwapType, } from '../../src';
+import { CurrencyAmount, NATIVE_NAMES_BY_ID, TO_PROTOCOL } from '../../src/util';
 import { BaseCommand } from '../base-command';
 
 dotenv.config();
@@ -118,7 +118,8 @@ export class Quote extends BaseCommand {
 
     let swapRoutes: SwapRoute | null;
     if (exactIn) {
-      const amountIn = parseAmount(amountStr, tokenIn);
+      // const amountIn = parseAmount(amountStr, tokenIn);
+      const amountIn = CurrencyAmount.fromRawAmount(tokenIn, amountStr)
       swapRoutes = await router.route(
         amountIn,
         tokenOut,
@@ -154,7 +155,8 @@ export class Quote extends BaseCommand {
         }
       );
     } else {
-      const amountOut = parseAmount(amountStr, tokenOut);
+      // const amountOut = parseAmount(amountStr, tokenOut);
+      const amountOut = CurrencyAmount.fromRawAmount(tokenOut, amountStr)
       swapRoutes = await router.route(
         amountOut,
         tokenIn,
