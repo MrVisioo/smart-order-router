@@ -340,8 +340,8 @@ export abstract class BaseCommand extends Command {
   outputSwapResults(
     routeAmounts: RouteWithValidQuote[],
     quote: CurrencyAmount<Currency>,
-    quoteGasAdjusted: CurrencyAmount<Currency>,
-    estimatedGasUsedQuoteToken: CurrencyAmount<Currency>,
+    _quoteGasAdjusted: CurrencyAmount<Currency>,
+    _estimatedGasUsedQuoteToken: CurrencyAmount<Currency>,
     estimatedGasUsedUSD: CurrencyAmount<Currency>,
     _methodParameters: MethodParameters | undefined,
     _blockNumber: BigNumber,
@@ -351,18 +351,18 @@ export abstract class BaseCommand extends Command {
   ) {
     process.stdout.write(JSON.stringify({
       bestRoute: `${routeAmountsToString(routeAmounts)}`,
-      amount: `${quote.toFixed(Math.min(quote.currency.decimals, 2))}`,
-      amountWithGas: `${quoteGasAdjusted.toFixed(
-        Math.min(quoteGasAdjusted.currency.decimals, 2)
-      )}`,
+
+      input: `${input.numerator}`,
+      inputDecimals: `${input.currency.decimals}`,
+
+      amount: `${quote.numerator}`,
+      amountDecimals: `${quote.currency.decimals}`,
+
       gasUSD: `${estimatedGasUsedUSD.toFixed(
         Math.min(estimatedGasUsedUSD.currency.decimals, 6)
       )}`,
-      gasToken: `${estimatedGasUsedQuoteToken.toFixed(
-        Math.min(estimatedGasUsedQuoteToken.currency.decimals, 6)
-      )}`,
       estimatedGas: `${estimatedGasUsed}`
-    }))
+    })+"\n")
   }
 
   logSwapResults(
