@@ -12,7 +12,7 @@ import { BaseCommand } from '../base-command';
 dotenv.config();
 
 Logger.globalLogger();
-Logger.setLogLevel(Logger.levels.DEBUG);
+Logger.setLogLevel(Logger.levels.OFF);
 
 export class Quote extends BaseCommand {
   static description = 'Uniswap Smart Order Router CLI';
